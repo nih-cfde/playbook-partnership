@@ -1,0 +1,54 @@
+questions:
+- variable: accountsEnabled
+  type: boolean
+  required: true
+  label: Accounts
+  show_subquestion_if: true
+  subquestions:
+  - variable: emailServer
+    type: string
+    required: true
+    label: The SMTP email server for account
+  - variable: emailFrom
+    type: string
+    required: true
+    label: The origin email
+- variable: ingressEnabled
+  type: boolean
+  required: true
+  label: Enable Ingress
+  show_subquestion_if: true
+  subquestions:
+  - variable: ingressType
+    type: enum
+    options:
+    - "default"
+    - "traefik"
+    required: true
+    label: Ingress Type
+    description: The type of ingress to create
+  - variable: ingressHost
+    type: string
+    required: true
+    label: Ingress Host
+    description: Host for this ingress
+- variable: objectStorageEnabled
+  type: boolean
+  required: true
+  label: Enable Object Storage
+  show_subquestions_if: true
+  subquestions:
+  - variable: objectStorageEndpoint
+    type: string
+    required: true
+    label: Object Storage Endpoint
+    default: https://s3.amazonaws.com
+  - variable: objectStorageBucket
+    type: string
+    required: true
+    label: Object Storage Bucket
+  - variable: objectStorageSecret
+    type: secret
+    required: true
+    label: Object Storage Secret Credentials
+    description: Should define accessKeyId & secretAccessKey
